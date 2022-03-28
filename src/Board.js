@@ -21,7 +21,7 @@ function Board({ answer }) {
             playSequence(answer, guess, currentRow);
             document
                 .querySelectorAll(`input[name^="note-${currentRow}"]`)
-                .forEach((el) => (el.style.background = "green"));
+                .forEach((el) => (el.style.background = "#538d4e"));
             setMessage("Congratulations!");
             setError("")
         } else if (guessStr.length < 6) {
@@ -38,11 +38,19 @@ function Board({ answer }) {
             if (guessStr[i] === answerStr[i]) {
                 document.querySelector(
                     `input[name="note-${currentRow}-${i}"]`
-                ).style.background = "green";
+                ).style.background = "#538d4e";
+                document.querySelector(
+                    `input[name="note-${currentRow}-${i}"]`
+                ).style.color = "white";
+
             } else if (answerStr.includes(guessStr[i])) {
                 document.querySelector(
                     `input[name="note-${currentRow}-${i}"]`
-                ).style.background = "yellow";
+                ).style.background = "#c9b458";
+                
+                document.querySelector(
+                    `input[name="note-${currentRow}-${i}"]`
+                ).style.color = "white";
             }
         }
     }, [answer, currentRow, guess]);
